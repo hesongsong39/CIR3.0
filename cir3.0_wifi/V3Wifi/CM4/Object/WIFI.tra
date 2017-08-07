@@ -1,0 +1,89 @@
+*** Creating Trace Output File '.\CM4\Object\WIFI.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\cm4\object\main.o"'
+### List of Objects: adding '".\cm4\object\task.o"'
+### List of Objects: adding '".\cm4\object\taskstartprc.o"'
+### List of Objects: adding '".\cm4\object\app.o"'
+### List of Objects: adding '".\cm4\object\appmsgdispatchpro.o"'
+### List of Objects: adding '".\cm4\object\appmsgtxpro.o"'
+### List of Objects: adding '".\cm4\object\appmsgrxpro.o"'
+### List of Objects: adding '".\cm4\object\memmanage.o"'
+### List of Objects: adding '".\cm4\object\apptime.o"'
+### List of Objects: adding '".\cm4\object\ledcontrol.o"'
+### List of Objects: adding '".\cm4\object\appdefine.o"'
+### List of Objects: adding '".\cm4\object\appnetpro.o"'
+### List of Objects: adding '".\cm4\object\appwifi.o"'
+### List of Objects: adding '".\cm4\object\updateapi.o"'
+### List of Objects: adding '".\cm4\object\updataslave.o"'
+### List of Objects: adding '".\cm4\object\update.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_cgu.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_scu.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_uart.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_gpio.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_i2c.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_ssp.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_i2s.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_timer.o"'
+### List of Objects: adding '".\cm4\object\lpc43xx_rgu.o"'
+### List of Objects: adding '".\cm4\object\c_can.o"'
+### List of Objects: adding '".\cm4\object\ccan_18xx_43xx.o"'
+### List of Objects: adding '".\cm4\object\mx66l51235f.o"'
+### List of Objects: adding '".\cm4\object\spifilib_dev_common.o"'
+### List of Objects: adding '".\cm4\object\spifilib_fam_mac_2b_stat.o"'
+### List of Objects: adding '".\cm4\object\spiflash.o"'
+### List of Objects: adding '".\cm4\object\uart.o"'
+### List of Objects: adding '".\cm4\object\eth_lpc43xx.o"'
+### List of Objects: adding '".\cm4\object\net_lib.o"'
+### List of Objects: adding '"..\Share\Drivers\Net\keil\TCP_CM3.lib"'
+### List of Objects: adding '".\cm4\object\ethernetudp.o"'
+### List of Objects: adding '".\cm4\object\ethernetset.o"'
+### List of Objects: adding '".\cm4\object\crc.o"'
+### List of Objects: adding '".\cm4\object\md5.o"'
+### List of Objects: adding '".\cm4\object\version.o"'
+### List of Objects: adding '".\cm4\object\cmddefine.o"'
+### List of Objects: adding '".\cm4\object\dataresend.o"'
+### List of Objects: adding '".\cm4\object\datatransfer.o"'
+### List of Objects: adding '".\cm4\object\canbuscontrol.o"'
+### List of Objects: adding '".\cm4\object\ptcir.o"'
+### List of Objects: adding '".\cm4\object\ptcan.o"'
+### List of Objects: adding '".\cm4\object\os_cpu_a.o"'
+### List of Objects: adding '".\cm4\object\os_cpu_c.o"'
+### List of Objects: adding '".\cm4\object\os_dbg.o"'
+### List of Objects: adding '".\cm4\object\os_core.o"'
+### List of Objects: adding '".\cm4\object\os_flag.o"'
+### List of Objects: adding '".\cm4\object\os_mbox.o"'
+### List of Objects: adding '".\cm4\object\os_mem.o"'
+### List of Objects: adding '".\cm4\object\os_mutex.o"'
+### List of Objects: adding '".\cm4\object\os_q.o"'
+### List of Objects: adding '".\cm4\object\os_sem.o"'
+### List of Objects: adding '".\cm4\object\os_task.o"'
+### List of Objects: adding '".\cm4\object\os_time.o"'
+### List of Objects: adding '".\cm4\object\os_tmr.o"'
+### List of Objects: adding '".\cm4\object\cpu_a.o"'
+### List of Objects: adding '".\cm4\object\app_hooks.o"'
+### List of Objects: adding '".\cm4\object\startup_lpc43xx.o"'
+### List of Objects: adding '".\cm4\object\system_lpc43xx.o"'
+### List of Objects: adding '".\cm4\object\target.o"'
+### List of Objects: adding '".\cm4\object\led.o"'
+### List of Objects: adding '".\cm4\object\gpio.o"'
+### List of Objects: adding '".\cm4\object\uartrxpro.o"'
+### List of Objects: adding '".\cm4\object\net_config.o"'
+### List of Objects: adding '".\cm4\object\canrxpro.o"'
+### List of Objects: adding '".\cm4\object\debugout.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M4 ".\cm4\object\main.o" ".\cm4\object\task.o" ".\cm4\object\taskstartprc.o" ".\cm4\object\app.o" ".\cm4\object\appmsgdispatchpro.o" ".\cm4\object\appmsgtxpro.o" ".\cm4\object\appmsgrxpro.o" ".\cm4\object\memmanage.o" ".\cm4\object\apptime.o" ".\cm4\object\ledcontrol.o" ".\cm4\object\appdefine.o" ".\cm4\object\appnetpro.o" ".\cm4\object\appwifi.o" ".\cm4\object\updateapi.o" ".\cm4\object\updataslave.o" ".\cm4\object\update.o" ".\cm4\object\lpc43xx_cgu.o" ".\cm4\object\lpc43xx_scu.o" ".\cm4\object\lpc43xx_uart.o" ".\cm4\object\lpc43xx_gpio.o" ".\cm4\object\lpc43xx_i2c.o" ".\cm4\object\lpc43xx_ssp.o" ".\cm4\object\lpc43xx_i2s.o" ".\cm4\object\lpc43xx_timer.o" ".\cm4\object\lpc43xx_rgu.o" ".\cm4\object\c_can.o" ".\cm4\object\ccan_18xx_43xx.o" ".\cm4\object\mx66l51235f.o" ".\cm4\object\spifilib_dev_common.o" ".\cm4\object\spifilib_fam_mac_2b_stat.o" ".\cm4\object\spiflash.o" ".\cm4\object\uart.o" ".\cm4\object\eth_lpc43xx.o" ".\cm4\object\net_lib.o" E:\GIT\cir3.0_wifi\Share\Drivers\Net\keil\TCP_CM3.lib ".\cm4\object\ethernetudp.o" ".\cm4\object\ethernetset.o" ".\cm4\object\crc.o" ".\cm4\object\md5.o" ".\cm4\object\version.o" ".\cm4\object\cmddefine.o" ".\cm4\object\dataresend.o" ".\cm4\object\datatransfer.o" ".\cm4\object\canbuscontrol.o" ".\cm4\object\ptcir.o" ".\cm4\object\ptcan.o" ".\cm4\object\os_cpu_a.o" ".\cm4\object\os_cpu_c.o" ".\cm4\object\os_dbg.o" ".\cm4\object\os_core.o" ".\cm4\object\os_flag.o" ".\cm4\object\os_mbox.o" ".\cm4\object\os_mem.o" ".\cm4\object\os_mutex.o" ".\cm4\object\os_q.o" ".\cm4\object\os_sem.o" ".\cm4\object\os_task.o" ".\cm4\object\os_time.o" ".\cm4\object\os_tmr.o" ".\cm4\object\cpu_a.o" ".\cm4\object\app_hooks.o" ".\cm4\object\startup_lpc43xx.o" ".\cm4\object\system_lpc43xx.o" ".\cm4\object\target.o" ".\cm4\object\led.o" ".\cm4\object\gpio.o" ".\cm4\object\uartrxpro.o" ".\cm4\object\net_config.o" ".\cm4\object\canrxpro.o" ".\cm4\object\debugout.o" 
+--library_type=microlib --strict --scatter ".\CM4\Object\ConverseUnit.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\CM4\List\WIFI.map" -o .\CM4\Object\WIFI.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\CM4\Object\WIFI.axf'
+### ADS-LD Command File: '.\CM4\Object\WIFI.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\CM4\Object\WIFI.lnp', Handle=0x00000420
+### Writing '.lnp' file
+### ADS-LD Command file '.\CM4\Object\WIFI.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

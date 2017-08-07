@@ -1,0 +1,5 @@
+-c --cpu Cortex-M4 -D__MICROLIB -g -W -O0 --apcs=interwork -I..\Share\Lpc43xx-CMSIS\Drivers\include -I.\uCOS-II\Config\ARM-Cortex-M4 -I..\Share\UCOS-II\Ports\ARM-Cortex-M4\Generic\RealView -I..\Share\UCOS-II\Source -I..\Share\UCOS-II\uC-CPU\ARM-Cortex-M4\RealView -I.\CM4\Driver\User -I.\CM4\emWin\emWin_header -I.\CM4\emWin\emWin_Config -I.\CM4\DebugOut -I..\Share\Drivers\CCAN -I..\Share\Drivers\UART -I..\Share\Common -I.\CM4\User -I..\Share\Drivers\SPIFI_Lib -I..\Share\Drivers\Net\keil -I..\Share\Drivers\Net\tcp -I..\Share\Drivers\Net\udp -I..\Share\Drivers\SSP0 -I..\Share\Drivers\SPIFI -I..\Share\Drivers\eMMC -I..\ShareG723 -I..\Share\Protocol -I..\CodecGSMR -I..\Share\Algorithm -I..\Share\Drivers\eeprom -I..\Share\DebugOut -I..\Share\Drivers\Net -I..\Share\Update 
+-I C:\Keil\ARM\RV31\INC 
+-I C:\Keil\ARM\CMSIS\Include 
+-I C:\Keil\ARM\Inc\NXP\LPC43xx 
+-DCORE_M4 -DDEBUG_ETHERNET_UPDATE -o ".\CM4\Object\os_q.o" --omf_browse ".\CM4\Object\os_q.crf" --depend ".\CM4\Object\os_q.d" "..\Share\UCOS-II\Source\os_q.c"

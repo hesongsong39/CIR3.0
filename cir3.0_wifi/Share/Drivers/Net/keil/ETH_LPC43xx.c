@@ -15,6 +15,9 @@
 #include  <ucos_ii.h>
 #include "AppNetpro.h"
 
+
+
+
 extern OS_FLAG_GRP *NETFlag;						/* 以太网底层与应用层通信 by HaoZhilei */
 
 /* The following macro definitions may be used to select the speed

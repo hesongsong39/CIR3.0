@@ -1,12 +1,12 @@
-.\cm4\object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\source\lpc43xx_ssp.c
-.\cm4\object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc43xx_ssp.h
-.\cm4\object\lpc43xx_ssp.o: ..\Share\Common\lpc43xx.h
-.\cm4\object\lpc43xx_ssp.o: D:\Program Files\keil\ARM\CMSIS\Include\core_cm4.h
-.\cm4\object\lpc43xx_ssp.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdint.h
-.\cm4\object\lpc43xx_ssp.o: D:\Program Files\keil\ARM\CMSIS\Include\core_cmInstr.h
-.\cm4\object\lpc43xx_ssp.o: D:\Program Files\keil\ARM\CMSIS\Include\core_cmFunc.h
-.\cm4\object\lpc43xx_ssp.o: D:\Program Files\keil\ARM\CMSIS\Include\core_cm4_simd.h
-.\cm4\object\lpc43xx_ssp.o: D:\Program Files\keil\ARM\Inc\NXP\LPC43xx\system_LPC43xx.h
-.\cm4\object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc_types.h
-.\cm4\object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc43xx_cgu.h
-.\cm4\object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc43xx_libcfg_default.h
+.\CM4\Object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\source\lpc43xx_ssp.c
+.\CM4\Object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc43xx_ssp.h
+.\CM4\Object\lpc43xx_ssp.o: ..\Share\Common\lpc43xx.h
+.\CM4\Object\lpc43xx_ssp.o: C:\Keil\ARM\CMSIS\Include\core_cm4.h
+.\CM4\Object\lpc43xx_ssp.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\CM4\Object\lpc43xx_ssp.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\CM4\Object\lpc43xx_ssp.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\CM4\Object\lpc43xx_ssp.o: C:\Keil\ARM\CMSIS\Include\core_cm4_simd.h
+.\CM4\Object\lpc43xx_ssp.o: C:\Keil\ARM\Inc\NXP\LPC43xx\system_LPC43xx.h
+.\CM4\Object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc_types.h
+.\CM4\Object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc43xx_cgu.h
+.\CM4\Object\lpc43xx_ssp.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc43xx_libcfg_default.h

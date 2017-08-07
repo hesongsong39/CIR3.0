@@ -1,7 +1,7 @@
-.\cm4\object\spifilib_dev_common.o: ..\Share\Drivers\SPIFI\spifilib_dev_common.c
-.\cm4\object\spifilib_dev_common.o: ..\Share\Drivers\SPIFI\spifilib_api.h
-.\cm4\object\spifilib_dev_common.o: ..\Share\Drivers\SPIFI\spifilib_dev.h
-.\cm4\object\spifilib_dev_common.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdbool.h
-.\cm4\object\spifilib_dev_common.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdint.h
-.\cm4\object\spifilib_dev_common.o: ..\Share\Drivers\SPIFI\spifilib_chiphw.h
-.\cm4\object\spifilib_dev_common.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\string.h
+.\CM4\Object\spifilib_dev_common.o: ..\Share\Drivers\SPIFI\spifilib_dev_common.c
+.\CM4\Object\spifilib_dev_common.o: ..\Share\Drivers\SPIFI\spifilib_api.h
+.\CM4\Object\spifilib_dev_common.o: ..\Share\Drivers\SPIFI\spifilib_dev.h
+.\CM4\Object\spifilib_dev_common.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\CM4\Object\spifilib_dev_common.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\CM4\Object\spifilib_dev_common.o: ..\Share\Drivers\SPIFI\spifilib_chiphw.h
+.\CM4\Object\spifilib_dev_common.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h

@@ -1,9 +1,9 @@
-.\cm4\object\ptcir.o: ..\Share\Protocol\ptcir.c
-.\cm4\object\ptcir.o: ..\Share\Protocol\ptcir.h
-.\cm4\object\ptcir.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc_types.h
-.\cm4\object\ptcir.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdint.h
-.\cm4\object\ptcir.o: ..\Share\Algorithm\crc.h
-.\cm4\object\ptcir.o: ..\Share\Common\cmdfunction.h
-.\cm4\object\ptcir.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\string.h
-.\cm4\object\ptcir.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdlib.h
-.\cm4\object\ptcir.o: D:\Program Files\keil\ARM\ARMCC\bin\..\include\stdio.h
+.\CM4\Object\ptcir.o: ..\Share\Protocol\ptcir.c
+.\CM4\Object\ptcir.o: ..\Share\Protocol\ptcir.h
+.\CM4\Object\ptcir.o: ..\Share\Lpc43xx-CMSIS\Drivers\include\lpc_types.h
+.\CM4\Object\ptcir.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\CM4\Object\ptcir.o: ..\Share\Algorithm\crc.h
+.\CM4\Object\ptcir.o: ..\Share\Common\cmdfunction.h
+.\CM4\Object\ptcir.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
+.\CM4\Object\ptcir.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\CM4\Object\ptcir.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
