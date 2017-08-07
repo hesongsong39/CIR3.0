@@ -1,0 +1,49 @@
+8
+
+dir
+1788
+http://192.168.2.82:8080/svn/soft/DEV/CIR3.0/Share/Lpc43xx-CMSIS/Core/Device/NXP/LPC43xx/Source/Templates
+http://192.168.2.82:8080/svn/soft
+
+
+
+2016-03-24T01:14:24.390625Z
+99
+zhangyanming
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+eb57d16c-49bf-e946-9789-0de5a294a135
+
+ARM
+dir
+
+system_LPC43xx.c
+file
+
+
+
+
+2017-03-13T01:25:27.992005Z
+99bad0b2a8f14d094e76aa1c37946da8
+2016-03-24T01:14:24.390625Z
+99
+zhangyanming
+
+IAR
+dir
+
+GCC
+dir
+

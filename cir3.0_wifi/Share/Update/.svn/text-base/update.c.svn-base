@@ -1,0 +1,287 @@
+/**********************************************************************
+* $Id$      App
+* @file
+* @brief
+* @version  1.0.0
+* @date     2016/12/18  11:20:15
+* @author   LiMeng
+* Copyright(C) 2015, Tianjin 712 Communication & Broadcasting Co., Ltd
+* All rights reserved.
+***********************************************************************/
+#include "update.h"
+#include "UpdataSlave.h"
+#include "UpdataMaster.h"
+#include <ucos_ii.h>
+#include "ptcir.h"
+#include "DebugOut.h"
+#include "lpc43xx.h"
+#include "lpc43xx_rgu.h"
+#include "MX66L51235F.h"
+#include "SPIFLASH.h"
+#include "cmddefine.h"
+#include "DataTransfer.h"
+#include "updateapi.h"
+/*********************************************************************/
+#ifdef USE_USB_UPDATE
+OS_STK    App_TaskUpdateProcStk [APP_TASKUPDATEPROC_STK_SIZE];
+#endif
+/*********************************************************************//**
+ * @brief
+ * @param[in]	None
+ * @return 		None
+ **********************************************************************/
+uint8_t UpdateDataIn(Tran_ptCIR_Frame *pTF,uint8_t ch)
+{
+    SlaveUpdateReceive(pTF,ch);
+#ifdef USE_USB_UPDATE
+    MasterUpdateReceive(pTF);		   //作为主机接收数据
+#endif
+}
+/*********************************************************************//**
+ * @brief
+ * @param[in]	None
+ * @return 		None
+ **********************************************************************/
+void ResetToBootloader(void)
+{
+#if 0
+    OSSchedLock();                         /* 关调度，防止干扰 */
+    LPC_REGFILE->REGFILE[0] = 0x5AA5A55A;  /* 告知复位原因 */
+    while(1);
+#else
+    LPC_REGFILE->REGFILE[0] = 0x5AA5A55A;  /* 告知复位原因 */
+    RGU_SoftReset(RGU_SIG_CORE);
+#endif
+}
+/*********************************************************************//**
+ * @brief
+ * @param[in]	None
+ * @return 		None
+ **********************************************************************/
+Bool WriteFlash_Update(uint32_t dst,const uint8_t *data,uint32_t len)
+{
+#if   defined  USE_SPIFLASH_UPDATE
+    return(SSP_Write(LPC_SSP0, dst,(uint32_t *)data,len));//SSP_Write写正确返回TRUE
+#elif defined USE_SPIFIFLASH_UPDATE
+    dst+=SPIFLASH_BASE_ADDRESS;
+    return (!SPIFI_WriteEx( dst,(uint32_t *)data,len));		//SPIFI_WriteEx写正确返回0
+#endif
+}
+/*********************************************************************//**
+ * @brief
+ * @param[in]	None
+ * @return 		None
+ **********************************************************************/
+Bool ReadFlash_Update(uint32_t dst, uint32_t *src, uint32_t len)
+{
+#if  defined USE_SPIFLASH_UPDATE
+    return(SSP_Read(LPC_SSP0, dst,  src,  len));
+#elif defined USE_SPIFIFLASH_UPDATE
+    uint32_t *pAdd=(uint32_t *)(dst + SPIFLASH_BASE_ADDRESS);
+    return (memcpy(src,pAdd,len) ? TRUE:FALSE);
+#endif
+}
+/*********************************************************************//**
+ * @brief
+ * @param[in]
+ * @return
+ **********************************************************************/
+Bool SendDataUpdate(uint8_t *FrameAr,uint16_t Framelen,uint8_t op,uint8_t cmd, uint8_t sport,uint8_t dport,uint8_t *data, uint16_t datalen,uint8_t interface)
+{
+    if(interface == INTERFACE_LAN)
+    {
+        uint8_t dip[4]= {NETADDR_IP1,NETADDR_IP2,NETADDR_IP3,0};
+        uint8_t sip[4]= {NETADDR_IP1,NETADDR_IP2,NETADDR_IP3,0};
+        uint8_t canAdd;
+        uint16_t dNetPort;
+        if(GetCanNetAddrByPort(dport,&canAdd,&dip[3]) == FALSE)
+        {
+            return FALSE;
+        }
+        if(GetCanNetAddrByPort(sport,&canAdd,&sip[3]) == FALSE)
+        {
+            return FALSE;
+        }
+        if(GetNetPortByPort(dport,&dNetPort) != TRUE)
+        {
+            return FALSE;
+        }
+        return EthernetDatapbCIR30FullSendPost(FrameAr,Framelen,dNetPort,op,cmd,sport,4,sip,dport,4,dip,data,datalen,FALSE);
+    }
+
+    if(interface == INTERFACE_CAN1 || interface == INTERFACE_CAN2)
+    {
+        return(CCANDataSimpleSendPost(FrameAr,Framelen,GetMasterCan(),op,cmd,sport,dport,data,datalen,FALSE));
+    }
+    return FALSE;
+}
+/*********************************************************************//**
+ * @brief
+ * @param[in]	None
+ * @return 		None
+ **********************************************************************/
+#ifdef USE_USB_UPDATE
+void App_TaskUpdateProc(void *p_arg)
+{
+	p_arg  = p_arg;
+    while(1)
+    {
+		//作为主机主动发送数据
+        MasterUpdateTran();						
+        OSTimeDlyHMSM(0,0,0,STEP_UPDATE);
+    }
+}
+/*********************************************************************//**
+ * @brief
+ * @param[in]	None
+ * @return 		None
+ **********************************************************************/
+uint8_t CreatUpdateProc()
+{
+    static uint8_t i=0;
+    if(i == 0)
+    {
+        i = OSTaskCreateExt((void (*)(void *)) App_TaskUpdateProc,
+                            (void           *) 0,
+                            (OS_STK         *)&App_TaskUpdateProcStk[APP_TASKUPDATEPROC_STK_SIZE - 1],
+                            (INT8U           ) APP_CFG_TASK_UPDATEPROC_PRIO,
+                            (INT16U          ) APP_CFG_TASK_UPDATEPROC_PRIO,
+                            (OS_STK         *)&App_TaskUpdateProcStk[0],
+                            (INT32U          ) APP_TASKUPDATEPROC_STK_SIZE,
+                            (void           *) 0,
+                            (INT16U          )(OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
+
+        Debug_Output_Ethernet(GetOwnPort(),"\nUpdate_task create %s.",i == OS_ERR_NONE ? "success":"failed" );
+        return((i  == OS_ERR_NONE) ? (i = 0xff) : !(i = 0));	//任务创建失败:return 0 i=0,成功：return 1 i!=0;
+    }
+    return (TRUE);
+}
+#endif
+/*********************************************************************//**
+ * @brief
+ * @param[in]
+ * @return
+ **********************************************************************/
+#if 0
+Bool ProgressOut(uint8_t sport,uint8_t enter,uint8_t type,char *str,uint8_t progress)
+{
+    char buf[64];
+    uint8_t txbuf[128] = {0};
+    uint8_t len;
+    uint8_t OwnPort = GetOwnPort();
+    PROGRESS *pData= (PROGRESS *)buf;
+    pData->port 	= sport;
+    pData->type 	= type;
+    pData->enter 	= enter;
+    pData ->front = 0;
+    pData->rgb[0] = 0;
+    pData->rgb[1] = 0;
+    pData->rgb[2] = 0;
+    switch(type)
+    {
+    case TYPE_PROGRESS:
+    {
+        sprintf((char *)pData->str,"%u%%",progress);
+        pData->strlength = strlen((const char *)pData->str);
+        len = pData->strlength + 10;
+    }
+    break;
+    case TYPE_STR:
+    {
+        GetUnitChinaNameByPort(sport,(char *)pData->str);
+        if(strlen((char *)pData->str) <= 8)
+			//对齐
+            strcat((char *)pData->str,(const char *)": ");
+        else
+            strcat((char *)pData->str,(const char *)":");
+        strcat((char *)pData->str,(const char *)str);
+        pData->strlength = strlen((char *)pData->str);
+        len = pData->strlength + 10;
+    }
+    break;
+    default:
+        break;
+    }
+
+    if(OwnPort == PORT_MMI1 || OwnPort== PORT_MMI2  || OwnPort == PORT_MMI)
+    {
+        //向MMI任务传递参数
+//        ProgressMMI((uint8_t *)buf,len,OP_UPDATE, CMD_UPDATE_TIP);
+        ProgressMMI((uint8_t *)buf,len);
+    }
+       return CCANDataSimpleSendPost(txbuf,sizeof(txbuf),GetMasterCan(),OP_UPDATE, CMD_UPDATE_TIP,sport,PORT_MMI,(uint8_t *)buf,len, FALSE);
+}
+#else
+Bool ProgressOut(uint8_t sport,uint8_t enter,uint8_t type,char *str,float progress)
+{
+    char buf[64];
+    uint8_t txbuf[128] = {0};
+    uint8_t len;
+    uint8_t OwnPort = GetOwnPort();
+    PROGRESS *pData= (PROGRESS *)buf;
+    pData->port 	= sport;
+    pData->type 	= type;
+    pData->enter 	= enter;
+    pData ->front = 0;
+    pData->rgb[0] = 0;
+    pData->rgb[1] = 0;
+    pData->rgb[2] = 0;
+    switch(type)
+    {
+    case TYPE_PROGRESS:
+    {
+        sprintf((char *)pData->str,"%.1f%%",progress);
+        pData->strlength = strlen((const char *)pData->str);
+        len = pData->strlength + 10;
+    }
+    break;
+    case TYPE_STR:
+    {
+        GetUnitChinaNameByPort(sport,(char *)pData->str);
+        if(strlen((char *)pData->str) <= 8)
+			//对齐
+            strcat((char *)pData->str,(const char *)": ");
+        else
+            strcat((char *)pData->str,(const char *)":");
+        strcat((char *)pData->str,(const char *)str);
+        pData->strlength = strlen((char *)pData->str);
+        len = pData->strlength + 10;
+    }
+    break;
+    default:
+        break;
+    }
+
+    if(OwnPort == PORT_MMI1 || OwnPort== PORT_MMI2  || OwnPort == PORT_MMI)
+    {
+        //向当前MMI任务传递参数
+        ProgressMMI((uint8_t *)buf,len);
+    }
+		//向远端MMI发送提示信息
+       return CCANDataSimpleSendPost(txbuf,sizeof(txbuf),GetMasterCan(),OP_UPDATE, CMD_UPDATE_TIP,sport,PORT_MMI,(uint8_t *)buf,len, FALSE);
+}
+#endif 
+/*********************************************************************//**
+ * @brief			
+ * @param[in]	
+ * @return 		
+ **********************************************************************/
+void WriteBootConfigArea(uint32_t len)
+{
+    BOOT_CONFIG Config;
+	uint16_t crc;
+    Config.new_updata 	= TRUE ;
+    Config.data_active 	= TRUE;
+    Config.data_length	= len;
+    memcpy(Config.sign,BOOTCONFIG_SIGN,sizeof(BOOTCONFIG_SIGN));
+    Config.data_offset 	=  FLASH_DATA_OFFSET_UPDATE;
+    Config.flash_type   =  FLASH_TYPE_BOOT;
+    crc = CalCRC16((unsigned char *)&Config,sizeof(BOOT_CONFIG)- sizeof(Config.crc));
+    Config.crc =(crc>>8);
+	Config.crc +=(crc<<8);
+	if (CheckCalCRC16((unsigned char *)&Config,sizeof(BOOT_CONFIG)))
+	{
+		__NOP();	
+	}
+    WriteFlash_Update(FLASH_BOOT_OFFSET_UPDATE,(uint8_t *)&Config,sizeof( BOOT_CONFIG));
+}

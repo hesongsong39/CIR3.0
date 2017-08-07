@@ -1,0 +1,15 @@
+#ifndef _UPDATASLAVE_H_
+#define _UPDATASLAVE_H_
+#include "ptcir.h"
+#define CHECK_NULL	  0
+#define CHECK_ING  	  2
+#define CHECK_SUCCESS 3
+#define CHECK_FAILED  4
+
+#define APP_TASKCHECKUPDATE_STK_SIZE 	1024u
+#define APP_CFG_TASK_CHECKUPDATE_PRIO (OS_LOWEST_PRIO-5)
+
+
+Bool SlaveUpdateReceive(Tran_ptCIR_Frame *pTF,uint8_t ch);
+#endif
+

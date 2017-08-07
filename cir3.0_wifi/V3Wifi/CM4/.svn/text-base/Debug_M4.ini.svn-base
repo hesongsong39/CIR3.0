@@ -1,0 +1,21 @@
+/******************************************************************************/
+/* Dbg_Flash.ini Initialization File for Debugging from internal Flash        */
+/*                 for NXP LPC18xx/LPC43xx                                    */
+/******************************************************************************/
+/* This file is part of the uVision/ARM development tools.                    */
+/* Copyright (c) 2005-2012 Keil Software. All rights reserved.                */
+/* This software may only be used under the terms of a valid, current,        */
+/* end user licence from KEIL for a compatible version of KEIL software       */
+/* development tools. Nothing else gives you the right to use this software.  */
+/******************************************************************************/
+
+FUNC void Setup (void) {
+  // Reset peripherals: LCD, USB0, USB1, DMA, SDIO, EMC, ETHERNET
+  _WDWORD(0x40053100, 0x007F0000);   	// Issue reset
+	// Reset peripherals: SPIFI
+	_WDWORD(0x40053104, (1<<21)|(1<<20)|(1<<23)|(1<<22));   		// Issue reset
+  _sleep_(1);
+}
+
+Setup();                             // Setup for Running
+

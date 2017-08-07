@@ -1,0 +1,80 @@
+8
+
+dir
+1751
+http://192.168.2.82:8080/svn/soft/DEV/CIR3.0/V3Wifi/CM4
+http://192.168.2.82:8080/svn/soft
+
+
+
+2017-05-18T00:50:43.843750Z
+1659
+limeng
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+eb57d16c-49bf-e946-9789-0de5a294a135
+
+Debug_M4.ini
+file
+
+
+
+
+2017-03-13T01:25:36.572005Z
+3f414ed24c46b11e02481393ec6a27e2
+2017-01-13T03:28:52.031250Z
+1232
+limeng
+
+V3Wifi - 快捷方式.lnk
+file
+
+
+
+
+2017-04-20T02:21:00.027212Z
+04fba3483604dcfcb1325c234a917cbf
+2017-04-12T07:16:17.984375Z
+1472
+limeng
+has-props
+
+Object
+dir
+
+Driver
+dir
+
+List
+dir
+
+clear.bat
+file
+
+
+
+
+2017-03-13T01:25:36.572005Z
+dba8461fd09dd2d5342b654b46f1ed6f
+2017-01-13T03:28:52.031250Z
+1232
+limeng
+
+ReadMe
+dir
+
+User
+dir
+
